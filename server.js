@@ -291,6 +291,20 @@ async function cleanUploadsDir() {
 }
 
 const PORT = process.env.PORT || 3000;
+const ADMIN_PIN = process.env.ADMIN_PIN || "2026"; // Por defecto 2026 si no hay env var
+
+app.use(express.json()); // Para leer JSON del cliente
+
+// Endpoint para verificar el PIN de forma segura
+app.post('/verify-pin', (req, res) => {
+  const { pin } = req.body;
+  if (pin === ADMIN_PIN) {
+    res.json({ success: true });
+  } else {
+    res.json({ success: false });
+  }
+});
+
 server.listen(PORT, async () => {
   await cleanUploadsDir();
   console.log(`🚀 Servidor de Karaoke corriendo en http://localhost:${PORT}`);

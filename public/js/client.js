@@ -25,9 +25,25 @@ const approvedClientName = document.getElementById('approved-client-name');
 
 const requestsFormContainer = document.getElementById('requests-form-container');
 const requestsDisabledMsg = document.getElementById('requests-disabled-msg');
+const splashScreen = document.getElementById('splash-screen');
 
 let currentRequestId = null;
 let currentRequestData = { name: '', song: '' };
+
+// Función para ocultar el Splash Screen suavemente
+function hideSplash() {
+  if (splashScreen) {
+    splashScreen.style.opacity = '0';
+    setTimeout(() => {
+      splashScreen.style.visibility = 'hidden';
+    }, 500);
+  }
+}
+
+// Ocultar Splash Screen después de 1 segundo (Seguridad total)
+setTimeout(() => {
+  hideSplash();
+}, 1000);
 
 // Inicialización
 function init() {

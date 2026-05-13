@@ -24,30 +24,106 @@
 </head>
 <body>
 
-  <div class="welcome-card fade-in">
-    <img src="assets/logo.jpg" alt="Logo" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--primary-color); margin-bottom: 2rem; box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);">
-    
-    <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Puerto Chopp</h1>
-    <p style="color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">Centro de Control del Sistema de Karaoke</p>
-    
-    <div style="display: grid; gap: 1rem; width: 100%;">
-      <a href="client.html" class="btn" style="text-decoration: none; padding: 1.2rem; gap: 1rem;">
-        <span class="material-symbols-rounded">person</span>
-        <span>Interfaz de Cliente</span>
-      </a>
-      <a href="dj.html" class="btn" style="text-decoration: none; padding: 1.2rem; gap: 1rem; background: linear-gradient(135deg, #333, #1a1a1a); color: var(--primary-color); border: 1px solid var(--primary-color);">
-        <span class="material-symbols-rounded">admin_panel_settings</span>
-        <span>Panel de DJ</span>
-      </a>
-      <a href="screen.html" class="btn" style="text-decoration: none; padding: 1.2rem; gap: 1rem; background: linear-gradient(135deg, #00b3ff, #0055ff); color: white;">
-        <span class="material-symbols-rounded">tv</span>
-        <span>Pantalla Karaoke (TV)</span>
-      </a>
-      <a href="tables.html" class="btn" style="text-decoration: none; padding: 1.2rem; gap: 1rem; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1);">
-        <span class="material-symbols-rounded">qr_code_2</span>
-        <span>Generador de Mesas QR</span>
-      </a>
+    <div id="customer-view" class="fade-in">
+      <img src="assets/logo.jpg" alt="Logo" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--primary-color); margin-bottom: 2rem; box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);">
+      <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Puerto Chopp</h1>
+      <p style="color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">Escaneá el código QR de tu mesa para empezar a cantar.</p>
     </div>
+
+    <div id="pin-view" class="hidden">
+      <div class="glass-panel" style="max-width: 300px; margin: 0 auto; padding: 2rem; border: 1px solid var(--primary-color);">
+        <span class="material-symbols-rounded" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">lock</span>
+        <h2 style="margin-bottom: 1.5rem;">PIN de Acceso</h2>
+        <input type="password" id="admin-pin" maxlength="4" placeholder="••••" style="text-align: center; font-size: 2rem; letter-spacing: 10px; padding: 1rem; margin-bottom: 1.5rem; width: 100%;">
+        <button class="btn" id="btn-pin-enter" style="width: 100%;">Verificar</button>
+        <p id="pin-error" class="hidden" style="color: #ff3366; margin-top: 1rem; font-size: 0.8rem; font-weight: bold;">PIN Incorrecto</p>
+      </div>
+    </div>
+
+    <div id="admin-view" class="hidden">
+      <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Panel de Gestión</h1>
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">Acceso restringido a personal de Puerto Chopp.</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.2rem; width: 100%; margin-top: 1rem;">
+        <!-- Tarjeta Cliente -->
+        <a href="client.html" class="glass-panel" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.8rem 1rem; gap: 0.8rem; transition: all 0.3s; border: 1px solid rgba(255, 0, 204, 0.4); border-radius: 24px; background: linear-gradient(135deg, #ff00cc, #7000ff) !important; box-shadow: 0 10px 30px rgba(255, 0, 204, 0.2);">
+          <span class="material-symbols-rounded" style="font-size: 2.8rem; color: #fff;">person</span>
+          <span style="font-weight: 800; font-size: 0.95rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Cliente</span>
+        </a>
+
+        <!-- Tarjeta DJ -->
+        <a href="dj.html" class="glass-panel" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.8rem 1rem; gap: 0.8rem; transition: all 0.3s; border: 1px solid rgba(255, 140, 0, 0.4); border-radius: 24px; background: linear-gradient(135deg, #ff8c00, #ff0000) !important; box-shadow: 0 10px 30px rgba(255, 140, 0, 0.2);">
+          <span class="material-symbols-rounded" style="font-size: 2.8rem; color: #fff;">admin_panel_settings</span>
+          <span style="font-weight: 800; font-size: 0.95rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Panel DJ</span>
+        </a>
+
+        <!-- Tarjeta Pantalla -->
+        <a href="screen.html" class="glass-panel" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.8rem 1rem; gap: 0.8rem; transition: all 0.3s; border: 1px solid rgba(0, 179, 255, 0.4); border-radius: 24px; background: linear-gradient(135deg, #00b3ff, #0055ff) !important; box-shadow: 0 10px 30px rgba(0, 179, 255, 0.2);">
+          <span class="material-symbols-rounded" style="font-size: 2.8rem; color: #fff;">tv</span>
+          <span style="font-weight: 800; font-size: 0.95rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">TV Screen</span>
+        </a>
+
+        <!-- Tarjeta QR -->
+        <a href="tables.html" class="glass-panel" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.8rem 1rem; gap: 0.8rem; transition: all 0.3s; border: 1px solid rgba(0, 255, 136, 0.4); border-radius: 24px; background: linear-gradient(135deg, #00ff88, #008855) !important; box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);">
+          <span class="material-symbols-rounded" style="font-size: 2.8rem; color: #fff;">qr_code_2</span>
+          <span style="font-weight: 800; font-size: 0.95rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Mesas QR</span>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+
+      if (params.get('admin') === 'puerto') {
+        document.getElementById('customer-view').classList.add('hidden');
+        document.getElementById('pin-view').classList.remove('hidden');
+      }
+
+      document.getElementById('btn-pin-enter').addEventListener('click', async () => {
+        const btn = document.getElementById('btn-pin-enter');
+        const pinInput = document.getElementById('admin-pin').value;
+        const errorMsg = document.getElementById('pin-error');
+        
+        // Estado de carga
+        const originalContent = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<div class="loader-small" style="border-left-color: #000; width: 16px; height: 16px;"></div>';
+
+        try {
+          const response = await fetch('/verify-pin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pin: pinInput })
+          });
+          
+          const data = await response.json();
+          
+          if (data.success) {
+            document.getElementById('pin-view').classList.add('hidden');
+            document.getElementById('admin-view').classList.remove('hidden');
+          } else {
+            errorMsg.classList.remove('hidden');
+            setTimeout(() => errorMsg.classList.add('hidden'), 2000);
+            document.getElementById('admin-pin').value = '';
+            // Restaurar botón si falla
+            btn.disabled = false;
+            btn.innerHTML = originalContent;
+          }
+        } catch (err) {
+          console.error('Error verificando PIN:', err);
+          btn.disabled = false;
+          btn.innerHTML = originalContent;
+        }
+      });
+    </script>
+
+    <style>
+      .glass-panel:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary-color) !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+      }
+    </style>
 
     <div style="margin-top: 3rem; opacity: 0.5; font-size: 0.8rem;">
       <p>© 2026 Puerto Chopp Karaoke System</p>
