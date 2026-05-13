@@ -248,3 +248,12 @@ socket.on('toggle-play', () => {
 });
 
 socket.emit('get-state');
+
+// Ocultar Splash Screen cuando todo cargue
+window.addEventListener('load', () => {
+  const splash = document.getElementById('splash-screen');
+  if (splash) {
+    splash.style.opacity = '0';
+    setTimeout(() => splash.remove(), 500);
+  }
+});
