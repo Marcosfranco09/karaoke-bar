@@ -37,6 +37,8 @@ const btnLogout = document.getElementById('btn-logout');
 const logoutOverlay = document.getElementById('logout-loader-overlay');
 const splashScreen = document.getElementById('splash-screen');
 
+let isInitialLoad = true; // Bandera para evitar el toast al recargar
+
 // Función para ocultar el Splash Screen suavemente
 function hideSplash() {
   if (splashScreen) {
@@ -47,25 +49,36 @@ function hideSplash() {
   }
 }
 
+// Ocultar Splash Screen después de 1 segundo (Seguridad total)
+setTimeout(() => {
+  hideSplash();
+}, 1000);
+
 // Observador de estado de autenticación (Carga inicial y cambios)
 auth.onAuthStateChanged((user) => {
-  hideSplash(); // Ocultar el splash sea cual sea el resultado
-  
   if (user) {
     document.body.style.overflow = 'auto'; // Habilitar scroll
     loginOverlay.style.opacity = '0';
     setTimeout(() => {
       loginOverlay.classList.add('hidden');
-      logoutOverlay.classList.add('hidden'); // Asegurar que el loader de logout se oculte
-      showToast(`Sesión activa: DJ de Puerto Chopp`, 'success');
+      logoutOverlay.classList.add('hidden');
+      
+      if (!isInitialLoad) {
+        showToast(`Sesión activa: DJ de Puerto Chopp`, 'success');
+      }
+      isInitialLoad = false;
     }, 500);
   } else {
     document.body.style.overflow = 'hidden'; // Bloquear scroll
     loginOverlay.classList.remove('hidden');
     loginOverlay.style.opacity = '1';
-    logoutOverlay.classList.add('hidden'); // Ocultar loader de logout si ya estamos en login
+    logoutOverlay.classList.add('hidden');
     
-    // Resetear botón e inputs por seguridad
+    // Resetear pedidos y UI por seguridad
+    if (requestsSwitch) requestsSwitch.checked = false;
+    isInitialLoad = false; 
+    
+    // Resetear botón e inputs
     btnLogin.disabled = false;
     btnLogin.innerHTML = 'Entrar <span class="material-symbols-rounded">login</span>';
     passInput.value = '';
@@ -82,12 +95,15 @@ togglePass.addEventListener('click', () => {
 });
 
 btnLogout.addEventListener('click', () => {
+  // Desactivar pedidos automáticamente al salir
+  socket.emit('set-requests-enabled', false);
+  
   logoutOverlay.classList.remove('hidden');
   setTimeout(() => {
     auth.signOut().then(() => {
       showToast('Sesión cerrada', 'info');
     });
-  }, 800); // Pequeño delay para que se vea la animación
+  }, 800); 
 });
 
 const btnResetQueue = document.getElementById('btn-reset-queue');
@@ -475,6 +491,7 @@ socket.on('initial-state', (state) => {
   autoplaySwitch.checked = state.autoplayEnabled;
   delayInput.value = state.autoplayDelay;
   lastSongSwitch.checked = state.lastSongMode;
+  requestsSwitch.checked = state.requestsEnabled; // <--- Línea añadida
   updatePlayNextBtn(state.autoplayEnabled);
   updateKaraokeBtn(state.karaokeRunning);
   renderRequests();
