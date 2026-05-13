@@ -20,9 +20,35 @@
     .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 4px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
     input:checked + .slider { background-color: var(--primary-color); }
     input:checked + .slider:before { transform: translateX(22px); }
+
+    /* Bloqueo Mobile */
+    #mobile-block {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--bg-gradient);
+      z-index: 999999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    @media (max-width: 1023px) {
+      #mobile-block { display: flex; }
+      body { overflow: hidden; }
+    }
   </style>
 </head>
 <body>
+  <!-- Bloqueo para dispositivos móviles -->
+  <div id="mobile-block">
+    <span class="material-symbols-rounded" style="font-size: 5rem; color: var(--primary-color); margin-bottom: 1.5rem;">desktop_windows</span>
+    <h1 style="font-size: 2rem; margin-bottom: 1rem;">Acceso Restringido</h1>
+    <p style="color: var(--text-muted); max-width: 300px; line-height: 1.6;">El Panel de DJ solo está disponible en computadoras o dispositivos de pantalla grande.</p>
+    <button class="btn" onclick="window.close()" style="margin-top: 2rem;">Cerrar Pestaña</button>
+  </div>
+
   <!-- Splash Screen Inicial -->
   <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 50000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease;">
     <img src="assets/logo.jpg" alt="Logo" style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--primary-color); margin-bottom: 2rem; animation: pulse 2s infinite;">
