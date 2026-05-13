@@ -35,9 +35,22 @@ const loginError = document.getElementById('login-error');
 const togglePass = document.getElementById('toggle-pass');
 const btnLogout = document.getElementById('btn-logout');
 const logoutOverlay = document.getElementById('logout-loader-overlay');
+const splashScreen = document.getElementById('splash-screen');
+
+// Función para ocultar el Splash Screen suavemente
+function hideSplash() {
+  if (splashScreen) {
+    splashScreen.style.opacity = '0';
+    setTimeout(() => {
+      splashScreen.style.visibility = 'hidden';
+    }, 500);
+  }
+}
 
 // Observador de estado de autenticación (Carga inicial y cambios)
 auth.onAuthStateChanged((user) => {
+  hideSplash(); // Ocultar el splash sea cual sea el resultado
+  
   if (user) {
     document.body.style.overflow = 'auto'; // Habilitar scroll
     loginOverlay.style.opacity = '0';
