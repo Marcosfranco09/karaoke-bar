@@ -91,7 +91,12 @@
 
     <!-- Cola -->
     <div class="glass-panel" style="max-width: none; height: 80vh; display: flex; flex-direction: column;">
-      <h2 style="text-align: center;">Cola de Reproducción (<span id="queue-count">0</span>)</h2>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
+        <h2 style="margin: 0;">Cola (<span id="queue-count">0</span>)</h2>
+        <button id="btn-reset-queue" class="btn-icon" style="background: rgba(255, 51, 102, 0.1); color: #ff3366; width: 32px; height: 32px; border-radius: 8px;" title="Resetear toda la cola">
+          <span class="material-symbols-rounded" style="font-size: 20px;">delete_sweep</span>
+        </button>
+      </div>
       <div id="queue-container" style="overflow-y: auto; flex: 1; padding: 0 10px 2rem 0; margin-bottom: 1rem;">
         <!-- Cola dinámica -->
       </div>

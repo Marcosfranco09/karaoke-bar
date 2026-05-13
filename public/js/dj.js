@@ -77,6 +77,16 @@ btnLogout.addEventListener('click', () => {
   }, 800); // Pequeño delay para que se vea la animación
 });
 
+const btnResetQueue = document.getElementById('btn-reset-queue');
+
+// Resetear cola con confirmación
+btnResetQueue.addEventListener('click', () => {
+  if (confirm('¿Estás seguro de que quieres vaciar TODA la cola? Esta acción no se puede deshacer.')) {
+    socket.emit('reset-queue');
+    showToast('Cola vaciada completamente', 'info');
+  }
+});
+
 btnLogin.addEventListener('click', () => {
   const email = emailInput.value.trim();
   const pass = passInput.value;

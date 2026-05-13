@@ -254,6 +254,14 @@ io.on('connection', (socket) => {
     io.emit('requests-enabled-state', requestsEnabled);
   });
 
+  // DJ resetea toda la cola
+  socket.on('reset-queue', () => {
+    queue = [];
+    nowPlaying = null;
+    io.emit('queue-updated', { queue });
+    io.emit('now-playing', null);
+  });
+
   // Sincronización inicial para DJ / Screen que se recarga
   socket.on('get-state', () => {
     socket.emit('initial-state', {
