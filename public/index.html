@@ -50,29 +50,35 @@
       <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Panel de Gestión</h1>
       <p style="color: var(--text-muted); margin-bottom: 2rem;">Acceso restringido a personal de Puerto Chopp.</p>
       
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.2rem; width: 100%; margin-top: 1rem;">
+      <div style="display: flex; flex-direction: row; flex-wrap: nowrap; gap: 1rem; width: 100%; max-width: 900px; margin-top: 1rem; justify-content: center; overflow: visible; padding: 2rem 0.5rem;">
         <!-- Tarjeta Cliente -->
-        <a href="client.html" target="_blank" rel="noopener noreferrer" class="glass-panel" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.8rem 1rem; gap: 0.8rem; transition: all 0.3s; border: 1px solid rgba(255, 0, 204, 0.4); border-radius: 24px; background: linear-gradient(135deg, #ff00cc, #7000ff) !important; box-shadow: 0 10px 30px rgba(255, 0, 204, 0.2);">
-          <span class="material-symbols-rounded" style="font-size: 2.8rem; color: #fff;">person</span>
-          <span style="font-weight: 800; font-size: 0.95rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Cliente</span>
+        <a href="client.html" target="_blank" rel="noopener noreferrer" class="glass-panel" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem 0.8rem; gap: 0.8rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; background: linear-gradient(135deg, #ff00cc, #7000ff) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); flex: 1; min-width: 130px; overflow: visible;">
+          <span class="material-symbols-rounded" style="font-size: 2.2rem; color: #fff;">person</span>
+          <span style="font-weight: 800; font-size: 0.8rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Cliente</span>
         </a>
 
         <!-- Tarjeta DJ -->
-        <a href="dj.html" target="_blank" rel="noopener noreferrer" class="glass-panel desktop-only" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.8rem 1rem; gap: 0.8rem; transition: all 0.3s; border: 1px solid rgba(255, 140, 0, 0.4); border-radius: 24px; background: linear-gradient(135deg, #ff8c00, #ff0000) !important; box-shadow: 0 10px 30px rgba(255, 140, 0, 0.2);">
-          <span class="material-symbols-rounded" style="font-size: 2.8rem; color: #fff;">admin_panel_settings</span>
-          <span style="font-weight: 800; font-size: 0.95rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Panel DJ</span>
+        <a href="dj.html" target="_blank" rel="noopener noreferrer" class="glass-panel desktop-only" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem 0.8rem; gap: 0.8rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; background: linear-gradient(135deg, #ff8c00, #ff0000) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); flex: 1; min-width: 130px; overflow: visible;">
+          <span class="material-symbols-rounded" style="font-size: 2.2rem; color: #fff;">admin_panel_settings</span>
+          <span style="font-weight: 800; font-size: 0.8rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Panel DJ</span>
         </a>
 
         <!-- Tarjeta Pantalla -->
-        <a href="screen.html" target="_blank" rel="noopener noreferrer" class="glass-panel desktop-only" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.8rem 1rem; gap: 0.8rem; transition: all 0.3s; border: 1px solid rgba(0, 179, 255, 0.4); border-radius: 24px; background: linear-gradient(135deg, #00b3ff, #0055ff) !important; box-shadow: 0 10px 30px rgba(0, 179, 255, 0.2);">
-          <span class="material-symbols-rounded" style="font-size: 2.8rem; color: #fff;">tv</span>
-          <span style="font-weight: 800; font-size: 0.95rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">TV Screen</span>
+        <a href="screen.html" target="_blank" rel="noopener noreferrer" class="glass-panel desktop-only" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem 0.8rem; gap: 0.8rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; background: linear-gradient(135deg, #00b3ff, #0055ff) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); flex: 1; min-width: 130px; overflow: visible;">
+          <span class="material-symbols-rounded" style="font-size: 2.2rem; color: #fff;">tv</span>
+          <span style="font-weight: 800; font-size: 0.8rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">TV Screen</span>
         </a>
 
         <!-- Tarjeta QR -->
-        <a href="tables.html" target="_blank" rel="noopener noreferrer" class="glass-panel" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.8rem 1rem; gap: 0.8rem; transition: all 0.3s; border: 1px solid rgba(0, 255, 136, 0.4); border-radius: 24px; background: linear-gradient(135deg, #00ff88, #008855) !important; box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);">
-          <span class="material-symbols-rounded" style="font-size: 2.8rem; color: #fff;">qr_code_2</span>
-          <span style="font-weight: 800; font-size: 0.95rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Mesas QR</span>
+        <a href="tables.html" target="_blank" rel="noopener noreferrer" class="glass-panel" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem 0.8rem; gap: 0.8rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; background: linear-gradient(135deg, #00ff88, #008855) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); flex: 1; min-width: 130px; overflow: visible;">
+          <span class="material-symbols-rounded" style="font-size: 2.2rem; color: #fff;">qr_code_2</span>
+          <span style="font-weight: 800; font-size: 0.8rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Mesas QR</span>
+        </a>
+
+        <!-- Tarjeta Cola (NUEVA) -->
+        <a href="queue.html" target="_blank" rel="noopener noreferrer" class="glass-panel" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem 0.8rem; gap: 0.8rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; background: linear-gradient(135deg, #7000ff, #3300ff) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); flex: 1; min-width: 130px; overflow: visible;">
+          <span class="material-symbols-rounded" style="font-size: 2.2rem; color: #fff;">format_list_numbered</span>
+          <span style="font-weight: 800; font-size: 0.8rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Playlist TV</span>
         </a>
       </div>
     </div>

@@ -59,7 +59,7 @@ const pendingRequests = new Map(); // id -> request
 let queue = []; // array of approved requests
 let history = []; // array of played requests
 let nowPlaying = null; // current song
-let autoplayEnabled = false; // estado global de autoplay
+let autoplayEnabled = true; // estado global de autoplay (Activado por defecto)
 let autoplayDelay = 5; // tiempo de espera en segundos
 let karaokeRunning = false; // estado del evento
 let lastSongMode = false; // modo última canción
@@ -87,6 +87,7 @@ io.on('connection', (socket) => {
       clientName: data.clientName,
       table: data.table || '',
       song: data.song,
+      observation: data.observation || '', // Capturar observación del cliente
       timestamp: Date.now()
     };
     pendingRequests.set(id, request);
@@ -227,8 +228,11 @@ io.on('connection', (socket) => {
   socket.on('toggle-karaoke', () => {
     karaokeRunning = !karaokeRunning;
     io.emit('karaoke-running-state', karaokeRunning);
-    // Ya no disparamos playNextLogic() automáticamente aquí.
-    // El DJ deberá pulsar "Siguiente" para arrancar la primera canción de la cola.
+    
+    // Si se inicia y hay canciones en cola pero nada reproduciéndose, arrancar automáticamente
+    if (karaokeRunning && !nowPlaying && queue.length > 0) {
+      playNextLogic();
+    }
   });
 
   // DJ activa última canción

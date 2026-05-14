@@ -33,11 +33,36 @@
         <label for="song-name">Nombre de la Canción</label>
         <input type="text" id="song-name" placeholder="Ej. Bohemian Rhapsody" autocomplete="off">
       </div>
-  
+
       <div class="form-group">
         <label for="artist-name">Artista</label>
         <input type="text" id="artist-name" placeholder="Ej. Queen" autocomplete="off">
       </div>
+
+      <!-- Interruptor de Observación (Al Final) -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; background: rgba(255,255,255,0.05); padding: 0.8rem 1rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+        <span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">¿Agregar observación?</span>
+        <label class="switch">
+          <input type="checkbox" id="obs-toggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <!-- Campo de Observación con Animación -->
+      <div id="obs-container" style="max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s ease-in-out; margin-bottom: 0;">
+        <div style="padding-bottom: 1.5rem;">
+          <label for="song-obs" style="display: block; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">Tu mensaje (opcional):</label>
+          <textarea id="song-obs" rows="2" placeholder="Ej: Bajarle un tono, es mi cumple, etc." style="width: 100%; padding: 0.8rem; border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; font-family: inherit; resize: none; transition: all 0.3s ease; outline: none;"></textarea>
+        </div>
+      </div>
+
+      <style>
+        #song-obs:focus {
+          border-color: var(--primary-color) !important;
+          background: rgba(255, 255, 255, 0.08) !important;
+          box-shadow: 0 0 15px rgba(255, 204, 0, 0.15);
+        }
+      </style>
       
       <button class="btn" id="btn-request">Pedir canción</button>
       <p id="client-error-msg" class="hidden" style="color: var(--primary-color); font-size: 0.8rem; text-align: center; margin-top: 1rem; font-weight: 600;"></p>

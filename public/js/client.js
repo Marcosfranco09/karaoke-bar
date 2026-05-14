@@ -22,6 +22,9 @@ const btnCancelRequest = document.getElementById('btn-cancel-request');
 const approvedCard = document.getElementById('approved-card');
 const approvedSongTitle = document.getElementById('approved-song-title');
 const approvedClientName = document.getElementById('approved-client-name');
+const obsToggle = document.getElementById('obs-toggle');
+const obsContainer = document.getElementById('obs-container');
+const inputObs = document.getElementById('song-obs');
 
 const requestsFormContainer = document.getElementById('requests-form-container');
 const requestsDisabledMsg = document.getElementById('requests-disabled-msg');
@@ -71,10 +74,13 @@ function showStatusPanel(state, message = '') {
   statusPanel.classList.remove('hidden');
   
   if (state === 'loading') {
-    statusTitle.textContent = '⏳ Cargando tu petición...';
-    statusTitle.style.background = 'linear-gradient(to right, var(--text-light), var(--text-muted))';
+    statusTitle.textContent = '¡PETICIÓN ENVIADA!';
+    statusTitle.style.background = 'linear-gradient(to right, #00ff88, var(--primary-color))';
     statusTitle.style.webkitBackgroundClip = 'text';
-    statusLoader.classList.remove('hidden');
+    statusTitle.style.whiteSpace = 'nowrap';
+    statusTitle.style.fontSize = '1.8rem'; // Ajuste para asegurar una línea
+    statusMessage.textContent = 'El DJ está revisando tu canción. Te avisaremos aquí mismo cuando sea aprobada.';
+    statusLoader.classList.add('hidden'); // Ocultar spinner
     btnNewRequest.classList.add('hidden');
     btnCancelRequest.classList.remove('hidden');
     approvedCard.classList.add('hidden');
@@ -147,9 +153,29 @@ btnRequest.addEventListener('click', () => {
   socket.emit('new-request', { 
     clientName: name, 
     table: tableNumber || '', // Mesa dinámica
-    song: fullSong 
+    song: fullSong,
+    observation: obsToggle.checked ? inputObs.value.trim() : ''
   });
+
+  // Limpiar campos de observación
+  obsToggle.checked = false;
+  obsContainer.classList.add('hidden');
+  inputObs.value = '';
+
   showStatusPanel('loading');
+});
+
+// Lógica para mostrar/ocultar observaciones con animación
+obsToggle.addEventListener('change', () => {
+  if (obsToggle.checked) {
+    obsContainer.style.maxHeight = '200px';
+    obsContainer.style.opacity = '1';
+    inputObs.focus();
+  } else {
+    obsContainer.style.maxHeight = '0';
+    obsContainer.style.opacity = '0';
+    inputObs.value = '';
+  }
 });
 
 btnNewRequest.addEventListener('click', () => {
